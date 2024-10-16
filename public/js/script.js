@@ -17,9 +17,20 @@ function submitLogin() {
     .catch(error => console.error('Error:', error));
 }
 
+function togglePassword() {
+    const passwordField = document.getElementById("password");
+    const toggleIcon = document.getElementById("toggleIcon");
 
+    if (passwordField.type === "password") {
+      passwordField.type = "text";
+      toggleIcon.classList.add("active"); 
+    } else {
+      passwordField.type = "password";
+      toggleIcon.classList.remove("active"); 
+    }
+  }
 
-function call_REST_API_Hello() {
+/*function call_REST_API_Hello() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
@@ -33,4 +44,4 @@ function call_REST_API_Hello() {
         document.getElementById('message').innerText = data.message;
     })
     .catch(error => console.error('Error:', error));
-}
+}*/

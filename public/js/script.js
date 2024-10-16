@@ -34,11 +34,14 @@ function checkPasswordBeforeRole() {
   //Check input password
   if (password.trim() === "") {
     passwordAlert.textContent = "Please enter your password.";
-    passwordAlert.style.display = "block";
+    passwordAlert.style.display = "block"; // Display alert message
   } else {
-    passwordAlert.style.display = "none";
+    passwordAlert.style.display = "none"; // Hide the alert message if password is filled
   }
 }
+// Add event listener to check the password input every time it changes
+passwordField.addEventListener("input", checkPasswordBeforeRole);
+
 
 
 // add event listener for validate form 

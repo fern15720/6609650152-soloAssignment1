@@ -4,6 +4,7 @@ const passwordField = document.getElementById("password");
 const roleField = document.getElementById("role");
 const loginButton = document.getElementById("loginButton");
 
+//checkFields
 function checkFields() {
   if (usernameField.value.trim() !== "" && passwordField.value.trim() !== "" && roleField.value  !== "") {
     loginButton.disabled = false; 
@@ -16,12 +17,10 @@ usernameField.addEventListener("input", checkFields);
 passwordField.addEventListener("input", checkFields);
 roleField.addEventListener("change", checkFields);
 
+//Submit form
 function submitLogin() {
     const username = usernameField.value;
     const password = passwordField.value;
-
-    /*const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;*/
 
     fetch('https://restapi.tu.ac.th/api/v1/auth/Ad/verify', {
         method: 'POST',
@@ -40,6 +39,7 @@ function submitLogin() {
     
 }
 
+// Show/Hide Password 
 function togglePassword() {
     const passwordField = document.getElementById("password");
     const toggleIcon = document.getElementById("toggleIcon");
@@ -53,18 +53,9 @@ function togglePassword() {
     }
   }
 
-/*function call_REST_API_Hello() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+  // Refresh form 
+  document.getElementById('refreshButton').addEventListener('click', function() {
+    location.reload(); 
+});
 
-    const url = (
-        'http://localhost:3000/hello?' +
-        new URLSearchParams({ myName: username, lastName: password}).toString()
-      );
-    
-    fetch(url)
-    .then(data => {
-        document.getElementById('message').innerText = data.message;
-    })
-    .catch(error => console.error('Error:', error));
-}*/
+

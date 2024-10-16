@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #b0d2d5;
+    background-color: #9ecace;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,7 +15,7 @@ body {
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    position: relative;
+    /*position: relative;*/
     box-sizing: border-box;
 }
 
@@ -30,12 +30,9 @@ body {
     width: 90px;
     height: 90px;
     border-radius: 50%;
-    margin-right: 10px;
 }
 
-.header h2 {
-    margin-right: 80px;
-}
+
 
 .login-container p {
     margin: 0;
@@ -63,7 +60,7 @@ body {
 .password-container input {
     width: 100%;
     padding-right: 40px;
-    padding: 10px;
+    /*padding: 10px;*/
     box-sizing: border-box;
 }
 
@@ -78,7 +75,8 @@ body {
     opacity: 0.7; 
 }
 
-.login-container button {
+
+/*.login-container button {
     width: 85%;
     padding: 10px;
     background-color: gray;
@@ -89,16 +87,63 @@ body {
     font-size: 16px;
     margin-top: 10px;
     transition: background-color 0.3s;
-  }
+  }*/
 
-  button:enabled:hover {
+  .login-button:enabled:hover {
     background-color: #277b2a;
   }
 
-  button:enabled {
+  .login-button:enabled {
     background-color: #4CAF50;
     cursor: pointer;
   }
+
+  .button-container {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px; /* ระยะห่างระหว่างปุ่ม */
+}
+
+.login-button {
+    background-color: #808080;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    flex: 1;
+    text-align: center;
+    cursor: not-allowed;
+    transition: background-color 0.3s;
+    
+}
+
+.refresh-button {
+    background-color: #7e847e;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 30px; /* กำหนดขนาดกว้างให้พอดีกับไอคอน */
+}
+
+.refresh-button:hover  {
+    background-color: #494b49;
+  }
+
+  .refresh-button  {
+    background-color: #7d7d7d;
+    cursor: pointer;
+  }
+
+
+
+
 
   
 

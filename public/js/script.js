@@ -25,6 +25,28 @@ function validateUsername() {
   } 
 }
 
+roleField.addEventListener("change", checkPasswordBeforeRole);
+
+function checkPasswordBeforeRole() {
+  const password = passwordField.value;
+  const passwordAlert = document.getElementById("passwordAlert");
+
+  //Check input password
+  if (password.trim() === "") {
+    passwordAlert.textContent = "Please enter your password.";
+    passwordAlert.style.display = "block";
+  } else {
+    passwordAlert.style.display = "none";
+  }
+}
+
+
+// add event listener for validate form 
+usernameField.addEventListener("input", validateForm);
+passwordField.addEventListener("input", validateForm);
+roleField.addEventListener("change", validateForm);
+
+
 
 //checkFields
 function checkFields() {

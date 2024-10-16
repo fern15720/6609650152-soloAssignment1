@@ -11,22 +11,26 @@
         <div class="header">
             <img src="img/Person.jpg" alt="Image">
             <div class="text">
-            <h2>Login Page</h2>
-            <p>Name: กนกพร พรรณปัญญา</p>    
+                <h2>Login Page</h2>
+                <p>Name: กนกพร พรรณปัญญา</p>    
             </div>
             
         </div>
+
         <input type="text" id="username" name="username" required placeholder="Username">
         <div class="password-container">
         <input type="password" id="password" name="password" required placeholder="Password">
         <img src="img/closeEye.png" alt="Show Password" onclick="togglePassword()" id="toggleIcon">
         </div>
-        <select>
-            <option>Select your role</option>
-            <option>Student</option>
-            <option>Lecturer</option>
+
+        <select id="role">
+            <option value="">Select your role</option>
+            <option value="student">Student</option>
+            <option value="lecturer">Lecturer</option>
         </select>
-        <button type="button" onclick="submitLogin()">Login</button>
+        
+        <button type="button" onclick="submitLogin()" id="loginButton"  disabled>Login</button>
+        <p id="message"></p>
         
     </div>
     <script src="js/script.js"></script>

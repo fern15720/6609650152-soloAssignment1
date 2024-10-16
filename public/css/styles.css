@@ -81,17 +81,23 @@ body {
 .login-container button {
     width: 85%;
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: gray;
     color: white;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
+    cursor: not-allowed;
     font-size: 16px;
     margin-top: 10px;
+    transition: background-color 0.3s;
   }
 
-  button:hover {
+  button:enabled:hover {
     background-color: #277b2a;
+  }
+
+  button:enabled {
+    background-color: #4CAF50;
+    cursor: pointer;
   }
 
   

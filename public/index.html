@@ -17,13 +17,18 @@
         </div>
 
         <!-- Input Username -->
-        <input type="text" id="username" name="username" required placeholder="Username">
+        <input type="text" id="username" name="username" required placeholder="Username" oninput="validateUsername()">
+        <span id="usernameAlert" style="display: block; color: red; font-size: 12px;"></span>
+
+        <!--input type="text" id="username" name="username" required placeholder="Username">
+        <span id="usernameError" class="error"></span -->
 
         <div class="password-container">
             <!-- Input Password -->
             <input type="password" id="password" name="password" required placeholder="Password">
-        <!-- Show/Hide Password -->
+            <!-- Show/Hide Password -->
             <img src="img/closeEye.png" alt="Show Password" onclick="togglePassword()" id="toggleIcon">
+            <span id="passwordAlert" style="display: none; color: red; font-size: 12px;"></span>
         </div>
 
         <!-- Select role -->
@@ -32,6 +37,7 @@
             <option value="student">Student</option>
             <option value="lecturer">Lecturer</option>
         </select>
+        
 
         <div class="button-container">
             <!-- SubmitLogin -->
@@ -45,7 +51,7 @@
         </div>
 
         <p id="message"></p>
-        <div id="response" style="margin-top: 20px;"></div>
+        
 
         
     

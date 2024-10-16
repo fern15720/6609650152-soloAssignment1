@@ -43,11 +43,30 @@ function checkPasswordBeforeRole() {
 passwordField.addEventListener("input", checkPasswordBeforeRole);
 
 
+function validateForm() {
+  const username = usernameField.value;
+  const password = passwordField.value;
+  const roleAlert = document.getElementById("roleAlert");
+
+  // Check username and password are entered completely.
+  if (username.trim() !== "" && password.trim() !== "") {
+    // Show warning message if role is not yet selected 
+    if (roleField.value === "") {
+      roleAlert.textContent = "Please select your role.";
+      roleAlert.style.display = "block";
+    } else {
+      roleAlert.style.display = "none";
+    }
+  } else {
+    roleAlert.style.display = "none"; // Hide message if username, password not filled
+  }
+}
 
 // add event listener for validate form 
 usernameField.addEventListener("input", validateForm);
 passwordField.addEventListener("input", validateForm);
 roleField.addEventListener("change", validateForm);
+
 
 
 

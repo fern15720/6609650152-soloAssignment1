@@ -75,9 +75,10 @@ function checkFields() {
   const username = usernameField.value;
   const password = passwordField.value;
   const role = roleField.value;
-  const usernamePattern = /^\d{10}$/;
+  const numberUsernamePattern = /^\d{10}$/;
+  const letterUsernamePattern = /^[A-Za-z][A-Za-z0-9]{4,}$/;
 
- if (usernamePattern.test(username) && password.trim() !== "" && role !== "") {
+ if ((numberUsernamePattern.test(username) || letterUsernamePattern.test(username)) && password.trim() !== "" && role !== "") {
     loginButton.disabled = false; 
  } else {
   loginButton.disabled = true; 
@@ -88,27 +89,66 @@ usernameField.addEventListener("input", checkFields);
 passwordField.addEventListener("input", checkFields);
 roleField.addEventListener("change", checkFields);
 
-//Submit form
 function submitLogin() {
   const username = usernameField.value;
   const password = passwordField.value;
+  const responseContainer = document.getElementById('responseContainer');
+  const responseMessage = document.getElementById('responseMessage');
+  const responseDetails = document.getElementById('responseDetails');
 
-    fetch('https://restapi.tu.ac.th/api/v1/auth/Ad/verify', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Application-Key' : 'TUcb24c31d468134b9d239d8465aebb11e3bad7796a3f0d9883cc665705c89006615ffbc4dd629091a23b613043869a0e8'
-        },
-        body: JSON.stringify({"UserName" : username, "PassWord" : password})
-    })
-    .then(response => response.json())
-    .then(data => {
-      document.getElementById('message').innerText = data.message;
-    })
-    .catch(error => console.error('Error:', error));
-    
-    
+  fetch('https://restapi.tu.ac.th/api/v1/auth/Ad/verify', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Application-Key': 'TUcb24c31d468134b9d239d8465aebb11e3bad7796a3f0d9883cc665705c89006615ffbc4dd629091a23b613043869a0e8'
+      },
+      body: JSON.stringify({"UserName": username, "PassWord": password})
+  })
+  .then(response => response.json())
+  .then(data => {
+      responseContainer.style.display = "block"; 
+
+      if (data.status) {
+          if (data.type === "student") {
+              responseMessage.innerHTML = ` ${data.message}<br>`;
+              responseDetails.innerHTML = `
+                  <strong>Username:</strong> ${data.username}<br>
+                  <strong>Display Name (TH):</strong> ${data.displayname_th}<br>
+                  <strong>Display Name (EN):</strong> ${data.displayname_en}<br>
+                  <strong>Type:</strong> ${data.type}<br>
+                  <strong>Email:</strong> ${data.email}<br>
+                  <strong>Department:</strong> ${data.department}<br>
+                  <strong>Faculty:</strong> ${data.faculty}<br>
+                  <strong>Student Status:</strong> ${data.tu_status}
+              `;
+          }
+          else if (data.type === "employee") {
+              responseMessage.innerHTML = `<strong>Status:</strong> ${data.message}<br>`;
+              responseDetails.innerHTML = `
+                  <strong>Username:</strong> ${data.username}<br>
+                  <strong>Display Name (TH):</strong> ${data.displayname_th}<br>
+                  <strong>Display Name (EN):</strong> ${data.displayname_en}<br>
+                  <strong>Type:</strong> ${data.type}<br>
+                  <strong>Email:</strong> ${data.email}<br>
+                  <strong>Department:</strong> ${data.department}<br>
+                  <strong>Organization:</strong> ${data.organization}<br>
+                  <strong>Work Status:</strong> ${data.StatusWork === "1" ? "Active" : "Not Active"}<br>
+                  <strong>Employee Status:</strong> ${data.StatusEmp}
+              `;
+          }
+      } else {
+          responseMessage.innerHTML = `<strong>Error:</strong> ${data.message}`;
+          responseDetails.innerHTML = ""; 
+      }
+  })
+  .catch(error => {
+      console.error('Error:', error);
+      responseMessage.innerHTML = `<strong>Error:</strong> An error occurred. Please try again.`;
+      responseDetails.innerHTML = ""; 
+  });
 }
+
+
 
 // Show/Hide Password 
 function togglePassword() {

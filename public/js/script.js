@@ -72,7 +72,12 @@ roleField.addEventListener("change", validateForm);
 
 //checkFields
 function checkFields() {
- if (usernameField.value.trim() !== "" && passwordField.value.trim() !== "" && roleField.value  !== "") {
+  const username = usernameField.value;
+  const password = passwordField.value;
+  const role = roleField.value;
+  const usernamePattern = /^\d{10}$/;
+
+ if (usernamePattern.test(username) && password.trim() !== "" && role !== "") {
     loginButton.disabled = false; 
  } else {
   loginButton.disabled = true; 

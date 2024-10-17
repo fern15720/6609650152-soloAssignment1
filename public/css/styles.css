@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #9ecace;
+    background-color: #bb0a0ae1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,12 +10,12 @@ body {
 
 .login-container {
     background-color: #ece8de;
-    width: 350px;
+    width: 400px;
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    /*position: relative;*/
+    position: relative;
     box-sizing: border-box;
 }
 
@@ -27,7 +27,6 @@ body {
 }
 
 .header img {
-    width: 90px;
     height: 90px;
     border-radius: 50%;
 }
@@ -52,15 +51,15 @@ body {
 }
 
 .password-container {
-    margin-left: 30px;
+    margin: 10px auto;
     position: relative;
-    width: 250px;
+    width: 80%;
+    box-sizing: border-box;
 }
 
 .password-container input {
     width: 100%;
     padding-right: 40px;
-    /*padding: 10px;*/
     box-sizing: border-box;
 }
 
@@ -74,20 +73,6 @@ body {
     cursor: pointer;
     opacity: 0.7; 
 }
-
-
-/*.login-container button {
-    width: 85%;
-    padding: 10px;
-    background-color: gray;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: not-allowed;
-    font-size: 16px;
-    margin-top: 10px;
-    transition: background-color 0.3s;
-  }*/
 
   .login-button:enabled:hover {
     background-color: #277b2a;
@@ -103,7 +88,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px; /* ระยะห่างระหว่างปุ่ม */
+    gap: 5px; 
 }
 
 .login-button {
@@ -129,18 +114,53 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    width: 30px; /* กำหนดขนาดกว้างให้พอดีกับไอคอน */
+    width: 30px; 
 }
 
 .refresh-button:hover  {
     background-color: #494b49;
-  }
+}
 
-  .refresh-button  {
+.refresh-button  {
     background-color: #7d7d7d;
     cursor: pointer;
-  }
+}
 
+#responseContainer {
+    display: none; 
+    margin-top: 20px;
+    padding: 10px; 
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #efedcd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    text-align: left;
+    color: #333;
+}
+
+#responseMessage {
+    font-size: 20px;
+    color: #4CAF50;
+    font-weight: bold;
+    margin-bottom: 10px; 
+}
+
+#responseDetails {
+    font-size: 14px;
+    text-align: left; 
+    margin-left: 10px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    line-height: 1.6; 
+}
+
+#responseMessage strong {
+    color: red; 
+}
+
+
+  
 
 
 

@@ -1,7 +1,6 @@
 
 const usernameField = document.getElementById("username");
 const passwordField = document.getElementById("password");
-const roleField = document.getElementById("role");
 const loginButton = document.getElementById("loginButton");
 
 function validateUsername() {
@@ -25,7 +24,6 @@ function validateUsername() {
   } 
 }
 
-roleField.addEventListener("change", checkPasswordBeforeRole);
 
 function checkPasswordBeforeRole() {
   const password = passwordField.value;
@@ -43,42 +41,19 @@ function checkPasswordBeforeRole() {
 passwordField.addEventListener("input", checkPasswordBeforeRole);
 
 
-function validateForm() {
-  const username = usernameField.value;
-  const password = passwordField.value;
-  const roleAlert = document.getElementById("roleAlert");
-
-  // Check username and password are entered completely.
-  if (username.trim() !== "" && password.trim() !== "") {
-    // Show warning message if role is not yet selected 
-    if (roleField.value === "") {
-      roleAlert.textContent = "Please select your role.";
-      roleAlert.style.display = "block";
-    } else {
-      roleAlert.style.display = "none";
-    }
-  } else {
-    roleAlert.style.display = "none"; // Hide message if username, password not filled
-  }
-}
-
 // add event listener for validate form 
 usernameField.addEventListener("input", validateForm);
 passwordField.addEventListener("input", validateForm);
-roleField.addEventListener("change", validateForm);
-
-
 
 
 //checkFields
 function checkFields() {
   const username = usernameField.value;
   const password = passwordField.value;
-  const role = roleField.value;
   const numberUsernamePattern = /^\d{10}$/;
   const letterUsernamePattern = /^[A-Za-z][A-Za-z0-9]{4,}$/;
 
- if ((numberUsernamePattern.test(username) || letterUsernamePattern.test(username)) && password.trim() !== "" && role !== "") {
+ if ((numberUsernamePattern.test(username) || letterUsernamePattern.test(username)) && password.trim() !== "") {
     loginButton.disabled = false; 
  } else {
   loginButton.disabled = true; 
@@ -87,7 +62,6 @@ function checkFields() {
 
 usernameField.addEventListener("input", checkFields);
 passwordField.addEventListener("input", checkFields);
-roleField.addEventListener("change", checkFields);
 
 function submitLogin() {
   const username = usernameField.value;
@@ -110,39 +84,15 @@ function submitLogin() {
 
       if (data.status) {
           if (data.type === "student") {
-              responseMessage.innerHTML = ` ${data.message}<br>`;
-              responseDetails.innerHTML = `
-                  <strong>Username:</strong> ${data.username}<br>
-                  <strong>Display Name (TH):</strong> ${data.displayname_th}<br>
-                  <strong>Display Name (EN):</strong> ${data.displayname_en}<br>
-                  <strong>Type:</strong> ${data.type}<br>
-                  <strong>Email:</strong> ${data.email}<br>
-                  <strong>Department:</strong> ${data.department}<br>
-                  <strong>Faculty:</strong> ${data.faculty}<br>
-                  <strong>Student Status:</strong> ${data.tu_status}
-              `;
+              responseMessage.innerHTML = ` ${data.message}`;
+              responseDetails.innerHTML = ` ${data.displayname_th}, ${data.faculty} `;
           }
-          else if (data.type === "employee") {
-              responseMessage.innerHTML = `<strong>Status:</strong> ${data.message}<br>`;
-              responseDetails.innerHTML = `
-                  <strong>Username:</strong> ${data.username}<br>
-                  <strong>Display Name (TH):</strong> ${data.displayname_th}<br>
-                  <strong>Display Name (EN):</strong> ${data.displayname_en}<br>
-                  <strong>Type:</strong> ${data.type}<br>
-                  <strong>Email:</strong> ${data.email}<br>
-                  <strong>Department:</strong> ${data.department}<br>
-                  <strong>Organization:</strong> ${data.organization}<br>
-                  <strong>Work Status:</strong> ${data.StatusWork === "1" ? "Active" : "Not Active"}<br>
-                  <strong>Employee Status:</strong> ${data.StatusEmp}
-              `;
-          }
-      } else {
-          responseMessage.innerHTML = `<strong>Error:</strong> ${data.message}`;
-          responseDetails.innerHTML = ""; 
-      }
+         
+      } 
   })
   .catch(error => {
       console.error('Error:', error);
+      alert("An error occurred. Please try again.");
       responseMessage.innerHTML = `<strong>Error:</strong> An error occurred. Please try again.`;
       responseDetails.innerHTML = ""; 
   });
